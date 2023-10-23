@@ -34,3 +34,4 @@ const checkPassword = () => {
 }
 
 pass.addEventListener('keyup', checkPassword)
+pass.setAttribute('type', 'password')
