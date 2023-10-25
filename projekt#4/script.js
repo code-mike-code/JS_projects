@@ -14,9 +14,11 @@ const funSwap = () => {
 	if (one.textContent === '°C') {
 		one.textContent = '°F'
 		two.textContent = '°C'
+		result.textContent = ''
 	} else {
 		one.textContent = '°C'
 		two.textContent = '°F'
+		result.textContent = ''
 	}
 }
 
@@ -24,18 +26,33 @@ const funSwap = () => {
 const fahrToCel = () => {
 	fahrenheit = converter.value * 1.8 + 32
 	result.textContent = `${converter.value}°C to ${fahrenheit.toFixed(2)}°F`
-    converter.value = ''
-	
+	converter.value = ''
 }
 
 // T(°C) = (T(°F) - 32) / 1,8  - wzór na celcjusza
 const celToFahr = () => {
 	celsius = (converter.value - 32) / 1.8
 	result.textContent = `${converter.value}°F to ${celsius.toFixed(2)}°C`
-    converter.value = ''
-	
+	converter.value = ''
+}
+
+const conversion = () => {
+	if (converter.value !== '') {
+		if (one.textContent === '°C') {
+			fahrToCel()
+		} else {
+			celToFahr()
+		}
+	} else {
+		result.textContent = 'Podaj wartość!'
+	}
+}
+
+const reset = () => {
+	converter.value = ''
+	result.textContent = ''
 }
 
 changeBtn.addEventListener('click', funSwap)
-convBtn.addEventListener('click', fahrToCel)
-
+convBtn.addEventListener('click', conversion)
+resetBtn.addEventListener('click', reset)
